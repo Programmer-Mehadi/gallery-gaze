@@ -1,7 +1,15 @@
-.image_card .hover_overlay {
+/* .image_card .hover_overlay {
   display: none;
 }
 
 .image_card:hover .hover_overlay {
   display: block;
 }
+
+.checkbox_input {
+  display: none;
+}
+
+.image_card:hover .checkbox_input {
+  display: block;
+} */
