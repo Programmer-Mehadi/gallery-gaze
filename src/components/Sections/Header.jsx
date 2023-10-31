@@ -12,7 +12,7 @@ export default function Header() {
           <CheckBox name="all_select" checked={true} />
           <span className="font-medium">
             {imagesList.filter((image) => image.select).length} File
-            {imagesList.filter((image) => image.select).length > 1 ? "s" : " "}
+            {imagesList.filter((image) => image.select).length > 1 ? "s " : " "}
             Selected
           </span>
         </div>
