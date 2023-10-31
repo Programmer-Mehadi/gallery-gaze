@@ -1,0 +1,7 @@
+.image_card .hover_overlay {
+  display: none;
+}
+
+.image_card:hover .hover_overlay {
+  display: block;
+}

@@ -6,7 +6,10 @@ export default function Header({ selectedImages }) {
       {selectedImages.length > 0 ? (
         <div className="flex gap-2 items-center">
           <CheckBox name="all_select" />
-          <span className="font-medium">3 Files Selected</span>
+          <span className="font-medium">
+            {selectedImages.length} File{selectedImages.length > 1 ? "s" : ""}
+            Selected
+          </span>
         </div>
       ) : (
         <div className="flex gap-2 items-center">
@@ -14,11 +17,13 @@ export default function Header({ selectedImages }) {
         </div>
       )}
 
-      <div>
-        <span className="text-[#ff2600] font-medium cursor-pointer">
-          Delete Files
-        </span>
-      </div>
+      {selectedImages.length > 0 && (
+        <div>
+          <span className="text-[#ff2600] font-medium cursor-pointer">
+            Delete File{selectedImages.length > 1 ? "s" : ""}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
