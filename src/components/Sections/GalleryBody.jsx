@@ -5,7 +5,7 @@ import ImageCard from "../Elements/ImageCard/ImageCard";
 export default function GalleryBody() {
   const { imagesList } = useSelector((state) => state.imageGallery);
   return (
-    <div className="bg-white rounded-b-[4px]  px-8 py-14">
+    <div className="bg-white rounded-b-lg px-4 md:px-8 py-14 shadow">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10">
         {imagesList?.map((image, index) => {
           return (
