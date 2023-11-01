@@ -4,7 +4,7 @@ export default function CheckBox({ ...props }) {
     <input
       className={"cursor-pointer text-lg w-[24px] h-[24px] " + props.className}
       type="checkbox"
-      checked={props.checked}
+      defaultChecked={props.checked ? true : false}
       name={props.name ? props.name : "checkbox"}
       onChange={props.onChange}
     />

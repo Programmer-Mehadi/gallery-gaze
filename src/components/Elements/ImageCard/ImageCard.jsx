@@ -18,7 +18,7 @@ export default function ImageCard({ image }) {
           <div
             className={`hover_overlay ${
               image.select
-                ? "bg-[#f8f9f9] bg-opacity-50"
+                ? "bg-[#f8f9f9] bg-opacity-60"
                 : "bg-[#828282] bg-opacity-50"
             } w-full h-full absolute top-0 left-0 z-20`}
           ></div>
