@@ -27,6 +27,7 @@ export default function ImageCard({ image }) {
             onChange={() => {
               dispatch(selectImage({ index: image.id }));
             }}
+            name={`checkbox-${image.id}`}
             className="checkbox_input absolute top-6 left-6 z-30"
             checked={image.select ? true : false}
           />

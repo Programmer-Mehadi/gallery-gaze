@@ -6,7 +6,7 @@ export default function Header() {
   const { imagesList } = useSelector((state) => state.imageGallery);
   const dispatch = useDispatch();
   return (
-    <div className="bg-white rounded-t-lg px-4 md:px-8 py-5 border-b border-[#ebebed] flex justify-between flex-wrap gap-6 min-h-[70px] shadow">
+    <div className="bg-white rounded-t-lg px-4 md:px-8 py-5 border-b border-[#ebebed] flex justify-between items-center flex-wrap gap-6 min-h-[70px] shadow">
       {imagesList.filter((image) => image.select).length > 0 ? (
         <div className="flex gap-2 items-center">
           <CheckBox name="all_select" checked={true} />

@@ -13,13 +13,13 @@ export default function GalleryBody() {
               key={image.id}
               className={`${
                 index === 0 ? "md:col-span-2 md:row-span-2" : "col-span-1"
-              } image_card border border-[#d8dadc] rounded-[4px] overflow-hidden relative top-0 left-0 shadow-sm cursor-pointer`}
+              } image_card border-2 border-[#d8dadc] rounded-md overflow-hidden relative top-0 left-0 shadow-sm cursor-pointer`}
             >
               <ImageCard key={image.id} image={image} index={index} />
             </div>
           );
         })}
-        <div className="image_card border border-[#d8dadc] rounded-[4px] overflow-hidden relative top-0 left-0 shadow-sm cursor-pointer min-h-[270px] md:min-h-[327px] lg:min-h-[241px] flex justify-center items-center flex-col gap-3">
+        <div className="image_card border-2 border-dashed border-[#d8dadc] rounded-md overflow-hidden relative top-0 left-0 shadow-sm cursor-pointer min-h-[270px] md:min-h-[327px] lg:min-h-[241px] flex justify-center items-center flex-col gap-3">
           <img
             src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png"
             alt=""
