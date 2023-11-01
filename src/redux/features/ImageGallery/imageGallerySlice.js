@@ -57,7 +57,11 @@ const initialState = {
       path: "./images/image-11.jpeg",
       select: false,
     },
-  ]
+  ],
+  dragdDrop: {
+    dragId: "",
+    dropId: "",
+  }
 }
 
 export const imageGalleySlice = createSlice({
@@ -65,7 +69,7 @@ export const imageGalleySlice = createSlice({
   initialState,
   reducers: {
     selectImage(state, action) {
-      const newList = state.imagesList.map((image) => {
+      state.imagesList = state.imagesList.map((image) => {
         if (image.id === action.payload.index) {
           return {
             ...image,
@@ -77,24 +81,54 @@ export const imageGalleySlice = createSlice({
           }
         }
       })
-      return {
-        ...state,
-        imagesList: newList
-      }
+
+    },
+    resetSelectImage(state) {
+      state.imagesList = state.imagesList.map((image) => {
+        return {
+          ...image,
+          select: false
+        }
+      })
     },
     deleteImage(state) {
       const newList = state.imagesList.filter((image) => {
         return image.select === false
       })
-      return {
-        ...state,
-        imagesList: newList
+      state.imagesList = newList
+    },
+    setDragId(state, action) {
+      state.dragdDrop.dragId = action.payload.id
+    },
+    setDropId(state, action) {
+
+      let dragIndex = 0;
+      let dropIndex = 0;
+
+      state.imagesList.forEach((image, index) => {
+        if (image.id == state.dragdDrop.dragId) {
+          dragIndex = index;
+        }
+        if (image.id == action.payload.id) {
+          dropIndex = index;
+        }
+      });
+
+
+      if (dragIndex !== -1 && dropIndex !== -1) {
+        const [draggedItem] = state.imagesList.splice(dragIndex, 1);
+        state.imagesList.splice(dropIndex, 0, draggedItem);
       }
+
+      state.dragdDrop = {
+        dragId: '',
+        dropId: '',
+      };
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { selectImage, deleteImage } = imageGalleySlice.actions
+export const { selectImage, deleteImage, setDragId, setDropId, resetSelectImage } = imageGalleySlice.actions
 
 export default imageGalleySlice.reducer

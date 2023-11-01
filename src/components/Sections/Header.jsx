@@ -1,20 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
 import CheckBox from "../Elements/Forms/CheckBox";
-import { deleteImage } from "../../redux/features/ImageGallery/imageGallerySlice";
+import {
+  deleteImage,
+  resetSelectImage,
+} from "../../redux/features/ImageGallery/imageGallerySlice";
 
 export default function Header() {
   const { imagesList } = useSelector((state) => state.imageGallery);
   const dispatch = useDispatch();
   return (
-    <div className="bg-white rounded-t-lg px-4 md:px-8 py-5 border-b border-[#ebebed] flex justify-between items-center flex-wrap gap-6 min-h-[70px] shadow">
+    <div className="header_container">
+      {/* left side */}
       {imagesList.filter((image) => image.select).length > 0 ? (
         <div className="flex gap-2 items-center">
-          <CheckBox name="all_select" checked={true} />
+          {/* select all image */}
+          <CheckBox
+            name="all_select"
+            checked={true}
+            onChange={() => {
+              dispatch(resetSelectImage());
+            }}
+          />
+          {/* selected image count start*/}
           <span className="font-medium">
             {imagesList.filter((image) => image.select).length} File
             {imagesList.filter((image) => image.select).length > 1 ? "s " : " "}
             Selected
           </span>
+          {/* selected image count  end*/}
         </div>
       ) : (
         <div className="flex gap-2 items-center">
@@ -22,6 +35,7 @@ export default function Header() {
         </div>
       )}
 
+      {/* delete image */}
       {imagesList.filter((image) => image.select).length > 0 && (
         <div>
           <span
