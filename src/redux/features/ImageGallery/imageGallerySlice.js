@@ -124,11 +124,14 @@ export const imageGalleySlice = createSlice({
         dragId: '',
         dropId: '',
       };
+    },
+    addNewImage(state, action) {
+      state.imagesList = [...state.imagesList, ...action.payload]
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { selectImage, deleteImage, setDragId, setDropId, resetSelectImage } = imageGalleySlice.actions
+export const { selectImage, deleteImage, setDragId, setDropId, resetSelectImage, addNewImage } = imageGalleySlice.actions
 
 export default imageGalleySlice.reducer

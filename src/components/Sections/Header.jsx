@@ -1,54 +1,53 @@
-import { useDispatch, useSelector } from "react-redux";
-import CheckBox from "../Elements/Forms/CheckBox";
+import { useDispatch, useSelector } from "react-redux"
+import CheckBox from "../Elements/Forms/CheckBox"
 import {
   deleteImage,
   resetSelectImage,
-} from "../../redux/features/ImageGallery/imageGallerySlice";
+} from "../../redux/features/ImageGallery/imageGallerySlice"
+import { Fragment } from "react"
 
 export default function Header() {
-  const { imagesList } = useSelector((state) => state.imageGallery);
-  const dispatch = useDispatch();
+  const { imagesList } = useSelector((state) => state.imageGallery)
+  const selectedImageLength = imagesList.filter((image) => image.select).length
+
+  const dispatch = useDispatch()
   return (
     <div className="header_container">
       {/* left side */}
-      {imagesList.filter((image) => image.select).length > 0 ? (
-        <div className="flex gap-2 items-center">
-          {/* select all image */}
-          <CheckBox
-            name="all_select"
-            checked={true}
-            onChange={() => {
-              dispatch(resetSelectImage());
-            }}
-          />
-          {/* selected image count start*/}
-          <span className="font-medium">
-            {imagesList.filter((image) => image.select).length} File
-            {imagesList.filter((image) => image.select).length > 1 ? "s " : " "}
-            Selected
-          </span>
-          {/* selected image count  end*/}
-        </div>
+      {selectedImageLength > 0 ? (
+        <Fragment>
+          <div className="flex gap-2 items-center">
+            <CheckBox
+              name="all_select"
+              checked={true}
+              onChange={() => {
+                dispatch(resetSelectImage())
+              }}
+            />
+            <span className="font-medium">
+              {selectedImageLength} File
+              {selectedImageLength > 1 ? "s " : " "}
+              Selected
+            </span>
+          </div>
+          {/* delete image */}
+          <div>
+            <span
+              className="text-[#ff2600] font-medium cursor-pointer"
+              onClick={() => {
+                dispatch(deleteImage())
+              }}
+            >
+              Delete File
+              {selectedImageLength > 1 ? "s" : ""}
+            </span>
+          </div>
+        </Fragment>
       ) : (
         <div className="flex gap-2 items-center">
           <span className="text-lg font-bold">Gallery</span>
         </div>
       )}
-
-      {/* delete image */}
-      {imagesList.filter((image) => image.select).length > 0 && (
-        <div>
-          <span
-            className="text-[#ff2600] font-medium cursor-pointer"
-            onClick={() => {
-              dispatch(deleteImage());
-            }}
-          >
-            Delete File
-            {imagesList.filter((image) => image.select).length > 1 ? "s" : ""}
-          </span>
-        </div>
-      )}
     </div>
-  );
+  )
 }

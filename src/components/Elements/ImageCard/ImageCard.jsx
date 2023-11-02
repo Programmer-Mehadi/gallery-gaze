@@ -1,6 +1,6 @@
 import { useState } from "react"
 import CheckBox from "../Forms/CheckBox"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import {
   selectImage,
   setDragId,
@@ -19,11 +19,9 @@ export default function ImageCard({ image }) {
 
   // drop
   function onDrop(e) {
-    if (
-      e.target.classList[0] === "image" ||
-      e.target.classList[0] === "checkbox_input" ||
-      e.target.classList[0] === "hover_overlay"
-    ) {
+    const classNameArray = ["image", "checkbox_input", "hover_overlay"]
+    const firstClass = e.target.classList[0]
+    if (classNameArray.includes(firstClass)) {
       const id = e.target.parentNode.id
       dispatch(setDropId({ id }))
     }
@@ -39,7 +37,7 @@ export default function ImageCard({ image }) {
 
   return (
     <div
-      className="image_card"
+      className="image_card h-full"
       onMouseEnter={() => setShowOverlay(true)}
       onMouseLeave={() => setShowOverlay(false)}
       id={`${image.id}`}
@@ -50,12 +48,22 @@ export default function ImageCard({ image }) {
       onDrop={(e) => {
         onDrop(e)
       }}
+      onDragEnter={(e) => {
+        e.target.classList.add("drag_hover")
+      }}
+      onDragLeave={(e) => {
+        e.target.classList.remove("drag_hover")
+      }}
       onDragOver={(e) => {
         e.preventDefault()
       }}
     >
       {/* image */}
-      <img src={image?.path} className="image w-full h-full" alt="" />
+      <img
+        src={image?.path}
+        className="image w-full h-full object-fill"
+        alt=""
+      />
       {/* overlay start */}
       {(showOverlay || image.select) && (
         <>

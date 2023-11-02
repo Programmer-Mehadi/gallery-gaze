@@ -25,6 +25,9 @@
 .featured_image {
   @apply md:col-span-2 md:row-span-2;
 }
+.other_images {
+  @apply w-full h-[270px] ssm:h-[350px] sm:h-[430px] md:h-[320px] lg:h-[330px] xl:h-[320px] 2xl:max-h-[250px];
+}
 .hover_overlay {
   @apply w-full h-full absolute top-0 left-0 z-20;
 }
@@ -42,3 +45,9 @@
 }
 
 /* add image card end */
+
+/* drag hover */
+
+.image_body_container .drag_hover {
+  @apply transition duration-150 ease-out scale-125;
+}
