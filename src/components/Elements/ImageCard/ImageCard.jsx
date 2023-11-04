@@ -1,11 +1,11 @@
 import { useState } from "react"
-import CheckBox from "../Forms/CheckBox"
 import { useDispatch } from "react-redux"
 import {
   selectImage,
   setDragId,
   setDropId,
 } from "../../../redux/features/ImageGallery/imageGallerySlice"
+import CheckBox from "../Forms/CheckBox"
 
 export default function ImageCard({ image }) {
   const [showOverlay, setShowOverlay] = useState(false)
@@ -47,6 +47,7 @@ export default function ImageCard({ image }) {
       }}
       onDrop={(e) => {
         onDrop(e)
+        e.target.classList.remove("drag_hover")
       }}
       onDragEnter={(e) => {
         e.target.classList.add("drag_hover")
